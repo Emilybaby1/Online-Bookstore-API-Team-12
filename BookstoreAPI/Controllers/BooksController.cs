@@ -26,6 +26,14 @@ namespace BookStore__Management_system.Controllers
             var books = await _bookRepository.GetAllBookAsync();
             return Ok(books);
         }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> SearchBooks([FromQuery] string searchTerm)
+        {
+            var books = await _bookRepository.SearchBooksAsync(searchTerm);
+            return Ok(books);
+        }
+
         [HttpGet("FindBook/{id}")]
         public async Task<IActionResult> GetBookById([FromRoute] int id)
         {
