@@ -67,5 +67,28 @@ namespace BookStore__Management_system.Controllers
             return Ok("Book Deleted Successfully....");
         }
 
+        //[HttpPost("add-to-cart/{id:int}")]
+        //public async Task<IActionResult> AddToCart([FromRoute] int id)
+        //{
+        //    try
+        //    {
+               
+        //        var book = await _bookRepository.GetBookByIdAsync(id);
+        //        if (book == null)
+        //        {
+        //            return NotFound(); // Return NotFound if the book doesn't exist
+        //        }
+
+              
+
+        //        return Ok("Book added to cart successfully.");
+        //    }
+        //    catch (Exception ex)
+        //    {
+               
+        //        return BadRequest("Error occurred while adding the book to the cart: " + ex.Message);
+        //    }
+        //}
+
     }
 }
