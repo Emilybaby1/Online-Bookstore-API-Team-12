@@ -1,0 +1,26 @@
+[
+  {
+    "UserId": "USERABCDE",
+    "FirstName": "Abiola",
+    "LastName": "Abdulsalam",
+    "Password": "Zhienart1234",
+    "Email": "azabdulsalam1@gmail.com",
+    "Role": "Administrator"
+  },
+  {
+    "UserId": "USERCDEFG",
+    "FirstName": "Jackline",
+    "LastName": "Chepngeno",
+    "Password": "nenojackline",
+    "Email": "chepngenojackline@gmail.com",
+    "Role": "Administrator"
+  },
+  {
+    "UserId": "ASERABCDE",
+    "FirstName": "Anthony",
+    "LastName": "Murray",
+    "Password": "anthony.murray",
+    "Email": "amurray@hrcorp.com",
+    "Role": "User"
+  }
+]
