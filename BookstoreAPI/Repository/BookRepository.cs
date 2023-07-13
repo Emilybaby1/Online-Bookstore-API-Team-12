@@ -48,8 +48,11 @@ namespace BookStore__Management_system.Repository
     {
         var book = new Books()
         {
-            Name = bookModel.Name,
-            Description = bookModel.Description
+            Id = bookModel.Id,
+            BookTitle = bookModel.BookTitle,
+            BookAuthor = bookModel.BookAuthor,
+            Genre= bookModel.Genre,
+            Price= bookModel.Price
         };
 
         _context.Books.Add(book);
@@ -69,9 +72,11 @@ namespace BookStore__Management_system.Repository
         //}
         var book = new Books()
         {
-            Id = bookId,
-            Name = bookModel.Name,
-            Description = bookModel.Description
+            Id = bookModel.Id,
+            BookTitle = bookModel.BookTitle,
+            BookAuthor = bookModel.BookAuthor,
+            Genre = bookModel.Genre,
+            Price = bookModel.Price
         };
 
         _context.Books.Update(book);
@@ -98,5 +103,25 @@ namespace BookStore__Management_system.Repository
             await _context.SaveChangesAsync();
         }
     }
-}
+        public async Task<List<BookModel>> SearchBooksAsync(string searchTerm)
+        {
+            // Your logic to search and retrieve books
+            List<BookModel> bookModels = new List<BookModel>();
+
+            if (searchTerm == "fiction")
+            {
+                bookModels.Add(new BookModel { BookTitle = "The Great Gatsby", BookAuthor = "F. Scott Fitzgerald" });
+                bookModels.Add(new BookModel { BookTitle = "To Kill a Mockingbird", BookAuthor = "Harper Lee" });
+            }
+            else if (searchTerm == "science")
+            {
+                bookModels.Add(new BookModel { BookTitle = "A Brief History of Time", BookAuthor = "Stephen Hawking" });
+                bookModels.Add(new BookModel { BookTitle = "The Elegant Universe", BookAuthor = "Brian Greene" });
+            }
+
+            return bookModels;
+        }
+
+        
+    }
 }

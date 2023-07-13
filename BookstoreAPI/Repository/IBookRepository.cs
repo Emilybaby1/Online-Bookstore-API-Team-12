@@ -1,5 +1,6 @@
 ﻿using BookStore__Management_system.Models;
 using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore__Management_system.Repository
 {
@@ -7,9 +8,13 @@ namespace BookStore__Management_system.Repository
     {
         Task<List<BookModel>> GetAllBookAsync();
         Task<BookModel> GetBookByIdAsync(int bookId);
+      
         Task<int> AddBookAsync(BookModel bookModel);
         Task UpdateBookAsync(int bookId, BookModel bookModel);
         Task UpdateBookPatchAsync(int bookId, JsonPatchDocument bookModel);
+
+        Task<List<BookModel>> SearchBooksAsync(string searchTerm);
+        
         Task DeleteBookAsync(int bookId);
         //Task GetBookByIdAsync();
     }

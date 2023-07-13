@@ -16,5 +16,8 @@ namespace BookStore__Management_system.Data
         }
         public DbSet<Books> Books { get; set; }
         public DbSet<Sales> Sales { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
+
     }
 }

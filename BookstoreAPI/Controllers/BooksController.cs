@@ -26,6 +26,14 @@ namespace BookStore__Management_system.Controllers
             var books = await _bookRepository.GetAllBookAsync();
             return Ok(books);
         }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> SearchBooks([FromQuery] string searchTerm)
+        {
+            var books = await _bookRepository.SearchBooksAsync(searchTerm);
+            return Ok(books);
+        }
+
         [HttpGet("FindBook/{id}")]
         public async Task<IActionResult> GetBookById([FromRoute] int id)
         {
@@ -58,6 +66,29 @@ namespace BookStore__Management_system.Controllers
             await _bookRepository.DeleteBookAsync(id);
             return Ok("Book Deleted Successfully....");
         }
+
+        //[HttpPost("add-to-cart/{id:int}")]
+        //public async Task<IActionResult> AddToCart([FromRoute] int id)
+        //{
+        //    try
+        //    {
+               
+        //        var book = await _bookRepository.GetBookByIdAsync(id);
+        //        if (book == null)
+        //        {
+        //            return NotFound(); // Return NotFound if the book doesn't exist
+        //        }
+
+              
+
+        //        return Ok("Book added to cart successfully.");
+        //    }
+        //    catch (Exception ex)
+        //    {
+               
+        //        return BadRequest("Error occurred while adding the book to the cart: " + ex.Message);
+        //    }
+        //}
 
     }
 }
