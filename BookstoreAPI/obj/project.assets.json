@@ -4911,19 +4911,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HP\\.nuget\\packages\\": {}
+    "C:\\Users\\Jacque\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP\\Desktop\\Online-Bookstore-API-Team-12\\BookstoreAPI\\BookStore  Management system.csproj",
+      "projectUniqueName": "C:\\Users\\Jacque\\Downloads\\Bookstore\\BookstoreAPI\\BookStore  Management system.csproj",
       "projectName": "BookStore  Management system",
-      "projectPath": "C:\\Users\\HP\\Desktop\\Online-Bookstore-API-Team-12\\BookstoreAPI\\BookStore  Management system.csproj",
-      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\Desktop\\Online-Bookstore-API-Team-12\\BookstoreAPI\\obj\\",
+      "projectPath": "C:\\Users\\Jacque\\Downloads\\Bookstore\\BookstoreAPI\\BookStore  Management system.csproj",
+      "packagesPath": "C:\\Users\\Jacque\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Jacque\\Downloads\\Bookstore\\BookstoreAPI\\obj\\",
+
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Jacque\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5019,7 +5020,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }
