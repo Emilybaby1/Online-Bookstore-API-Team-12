@@ -14,10 +14,27 @@ namespace BookStore__Management_system.Data
         {
 
         }
+        public DbSet<User> Users { get; set; }
         public DbSet<Books> Books { get; set; }
         public DbSet<Sales> Sales { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<User>()
+              .HasKey(u => new {
+                  u.UserId
+              });
+
+            builder.Entity<Books>()
+              .HasKey(e => new
+              {
+                  e.Id
+              });
+        }
+        
     }
 }
