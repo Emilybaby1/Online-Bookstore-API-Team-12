@@ -1,0 +1,23 @@
+[
+  {
+    "Id": "1",
+    "bookTitle": "Things fall apart",
+    "bookAuthor": "Chinua Achebe",
+    "genre": "Historical fiction",
+    "price": 5000
+  },
+  {
+    "Id": "2",
+    "bookTitle": "Half of a yellow sun",
+    "bookAuthor": "Chimamanda Adichie",
+    "genre": "Historical fiction",
+    "price": 8000
+  },
+  {
+    "Id": "3",
+    "bookTitle": "Kintu",
+    "bookAuthor": "Jennifer Nansubuga Makumbi",
+    "genre": "Historical fiction",
+    "price": 5000
+  }
+]
