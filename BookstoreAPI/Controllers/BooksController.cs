@@ -88,7 +88,7 @@ namespace BookStore__Management_system.Controllers
 
         }
         [HttpPost("AddBook")]
-        [Authorize(Roles = "Administrator")]
+        [Authorize]
         public async Task<IActionResult> AddNewBook([FromBody] BookModel bookModel)
         {
             try
@@ -111,7 +111,7 @@ namespace BookStore__Management_system.Controllers
             
     }
     [HttpPut("UpdateBook/{id}")]
-        [Authorize(Roles = "Administrator")]
+      
         public async Task<IActionResult> UpdateBook([FromBody] BookModel bookModel, [FromRoute] int id)
         {
             try
@@ -133,7 +133,6 @@ namespace BookStore__Management_system.Controllers
         }
         
         [HttpDelete("DeleteBook/{id}")]
-        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteBook([FromRoute] int id)
         {
             try
