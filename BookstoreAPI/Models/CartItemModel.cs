@@ -8,6 +8,7 @@ namespace BookStore__Management_system.Models
     {
         [Key]
         public int CartId { get; set; }
+
         [Required]
         [ForeignKey(nameof(Books.Id))]
         public int BookId { get; set; }

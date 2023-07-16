@@ -11,8 +11,6 @@ namespace BookStore__Management_system.Helpers
         {
             CreateMap<Books, BookModel>().ReverseMap();
 
-            CreateMap<Sales, SaleModel>().ReverseMap();
-
             CreateMap<RegisterModel, User>().ReverseMap();
 
             CreateMap<LoginModel, User>().ReverseMap();

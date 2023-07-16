@@ -47,6 +47,62 @@ namespace BookStore__Management_system.Migrations
                     b.ToTable("Books");
                 });
 
+            modelBuilder.Entity("BookStore__Management_system.Data.Cart", b =>
+                {
+                    b.Property<int>("CartId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartId"));
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<float>("price")
+                        .HasColumnType("real");
+
+                    b.Property<float>("subtotal")
+                        .HasColumnType("real");
+
+                    b.HasKey("CartId");
+
+                    b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("BookStore__Management_system.Data.CartItem", b =>
+                {
+                    b.Property<int>("CartId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartId"));
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<float>("price")
+                        .HasColumnType("real");
+
+                    b.Property<float>("subtotal")
+                        .HasColumnType("real");
+
+                    b.HasKey("CartId");
+
+                    b.ToTable("CartItems");
+                });
+
             modelBuilder.Entity("BookStore__Management_system.Data.Sales", b =>
                 {
                     b.Property<int>("Id")

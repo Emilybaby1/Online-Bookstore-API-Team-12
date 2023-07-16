@@ -33,21 +33,5 @@ namespace BookStore__Management_system.Controllers
                 return StatusCode(500);
             }
         }
-
-        [Authorize]
-        [HttpPost("Role")]
-        public ActionResult<User> ChangeRole(UserChangeRoleModel model)
-        {
-            try
-            {
-                var user = this.authService.ChangeRole(model.Email, model.Role);
-                return Ok(user);
-            }
-            catch (Exception error)
-            {
-                logger.LogError(error.Message);
-                return StatusCode(500);
-            }
-        }
     }
 }

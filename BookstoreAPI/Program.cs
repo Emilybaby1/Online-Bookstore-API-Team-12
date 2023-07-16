@@ -18,7 +18,6 @@ builder.Services.AddDbContext<BookStoreContext>(options => options.UseSqlServer(
 builder.Configuration.GetConnectionString("DefaultConnection")
 ));
 builder.Services.AddTransient<IBookRepository, BookRepository>();
-builder.Services.AddTransient<ISaleRepository, SaleRepository>();
 builder.Services.AddTransient<AuthService>();
 builder.Services.AddScoped<DbSeeder>();
 builder.Services.AddAutoMapper(typeof(ApplicationMapper));
@@ -88,6 +87,8 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+builder.Services.AddAuthorization();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -100,11 +101,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
+app.UseAuthentication();
 
 app.UseAuthorization();
-
-app.UseAuthentication();
 
 app.MapControllers();
 

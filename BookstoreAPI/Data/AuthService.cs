@@ -10,12 +10,12 @@ namespace BookStore__Management_system.Data
 {
     public class AuthService
     {
-        private readonly BookStoreContext dataContext;
+        private readonly BookStoreContext dbContext;
         private readonly IConfiguration configuration;
 
-        public AuthService(BookStoreContext dataContext, IConfiguration configuration)
+        public AuthService(BookStoreContext dbContext, IConfiguration configuration)
         {
-            this.dataContext = dataContext;
+            this.dbContext = dbContext;
             this.configuration = configuration;
         }
 
@@ -27,23 +27,23 @@ namespace BookStore__Management_system.Data
 
         public bool DoesUserExists(string email)
         {
-            var user = this.dataContext.Users.FirstOrDefault(x => x.Email == email);
+            var user = this.dbContext.Users.FirstOrDefault(x => x.Email == email);
             return user != null;
         }
 
         public User GetById(string id)
         {
-            return this.dataContext.Users.FirstOrDefault(c => c.UserId == id);
+            return this.dbContext.Users.FirstOrDefault(c => c.UserId == id);
         }
 
         public User[] GetAll()
         {
-            return this.dataContext.Users.ToArray();
+            return this.dbContext.Users.ToArray();
         }
 
         public User GetByEmail(string email)
         {
-            return this.dataContext.Users.FirstOrDefault(c => c.Email == email);
+            return this.dbContext.Users.FirstOrDefault(c => c.Email == email);
         }
 
         public User RegisterUser(User model)
@@ -58,8 +58,8 @@ namespace BookStore__Management_system.Data
             model.UserId = id;
             model.Password = BC.HashPassword(model.Password);
 
-            var userEntity = this.dataContext.Users.Add(model);
-            this.dataContext.SaveChanges();
+            var userEntity = this.dbContext.Users.Add(model);
+            this.dbContext.SaveChanges();
 
             return userEntity.Entity;
         }
@@ -100,14 +100,5 @@ namespace BookStore__Management_system.Data
             return t.Payload.FirstOrDefault(x => x.Key == "email").Value.ToString();
         }
 
-        public User ChangeRole(string email, string role)
-        {
-            var user = this.GetByEmail(email);
-            user.Role = role;
-            this.dataContext.SaveChanges();
-
-
-            return user;
-        }
     }
 }

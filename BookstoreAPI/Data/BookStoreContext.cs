@@ -16,7 +16,7 @@ namespace BookStore__Management_system.Data
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Books> Books { get; set; }
-        public DbSet<Sales> Sales { get; set; }
+        
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
 
@@ -34,6 +34,12 @@ namespace BookStore__Management_system.Data
               {
                   e.Id
               });
+
+            builder.Entity<CartItem>()
+             .HasKey(c => new
+             {
+                 c.CartId
+             });
         }
         
     }

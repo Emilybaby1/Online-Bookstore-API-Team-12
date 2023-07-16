@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace BookStore__Management_system.Controllers
 {
@@ -30,24 +31,61 @@ namespace BookStore__Management_system.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetAllBooks()
         {
-            var books = await _bookRepository.GetAllBookAsync();
-            return Ok(books);
+            try
+            {
+                var books = await _bookRepository.GetAllBookAsync();
+                return Ok(books);
+            }
+            catch (Exception error)
+            {
+                logger.LogError(error.Message);
+                return StatusCode(500);
+            }
+            
         }
 
         [HttpGet("search")]
         public async Task<IActionResult> SearchBooks([FromQuery] string searchTerm)
         {
-            var books = await _bookRepository.SearchBooksAsync(searchTerm);
-            return Ok(books);
+            try
+            {
+                var books = await _bookRepository.SearchBooksAsync(searchTerm);
+
+                if (books != null)
+                {
+                    return Ok(books);
+                }
+
+                return NotFound();
+            }
+            catch (Exception error)
+            {
+                logger.LogError(error.Message);
+                return StatusCode(500);
+            }
+            
         }
 
         [HttpGet("FindBook/{id}")]
         public async Task<IActionResult> GetBookById([FromRoute] int id)
         {
-            var book = await _bookRepository.GetBookByIdAsync(id);
-            if (book == null)
+            try
+            {
+                var book = await _bookRepository.GetBookByIdAsync(id);
+
+                if (book != null)
+                {
+                    return Ok(book);
+                }
+
                 return NotFound();
-            return Ok(book);
+            }
+            catch (Exception error)
+            {
+                logger.LogError(error.Message);
+                return StatusCode(500);
+            }
+
         }
         [HttpPost("AddBook")]
         [Authorize(Roles = "Administrator")]
@@ -57,8 +95,10 @@ namespace BookStore__Management_system.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var id = await _bookRepository.AddBookAsync(bookModel);
-                    return CreatedAtAction(nameof(GetBookById), new { id = id, controller = "books" }, $"Book Added Successfully.\nYour Book Id Is : {id}");
+                    
+                    var Id = await _bookRepository.AddBookAsync(bookModel);
+                    return CreatedAtAction(nameof(GetBookById), new { id = Id, controller = "books" }, $"Book Added Successfully.\nYour Book Id Is : {Id}");
+
                 }
 
                 return BadRequest(ModelState);
@@ -68,27 +108,49 @@ namespace BookStore__Management_system.Controllers
                 logger.LogError(error.Message);
                 return StatusCode(500);
             }
+            
     }
     [HttpPut("UpdateBook/{id}")]
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> UpdateBook([FromBody] BookModel bookModel, [FromRoute] int id)
         {
-            await _bookRepository.UpdateBookAsync(id, bookModel);
-            return Ok("Book Updated Successfully....");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    await _bookRepository.UpdateBookAsync(id, bookModel);
+                    return Ok("Book Updated Successfully....");
+                }
+                    
+                return BadRequest(ModelState);
+            }
+            catch (Exception error)
+            {
+                logger.LogError(error.Message);
+                return StatusCode(500);
+            }
+           
         }
-        [HttpPatch("UpdateBook/{id}")]
-        [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> UpdateBookPatch([FromBody] JsonPatchDocument bookModel, [FromRoute] int id)
-        {
-            await _bookRepository.UpdateBookPatchAsync(id, bookModel);
-            return Ok("Book Updated Successfully....");
-        }
+        
         [HttpDelete("DeleteBook/{id}")]
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteBook([FromRoute] int id)
         {
-            await _bookRepository.DeleteBookAsync(id);
-            return Ok("Book Deleted Successfully....");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    await _bookRepository.DeleteBookAsync(id);
+                    return Ok("Book Deleted Successfully....");
+                }
+
+                return BadRequest(ModelState);
+            }
+            catch (Exception error)
+            {
+                logger.LogError(error.Message);
+                return StatusCode(500);
+            }
         }
 
         //[HttpPost("add-to-cart/{id:int}")]

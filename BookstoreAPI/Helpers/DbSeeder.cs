@@ -34,18 +34,18 @@ namespace BookStore__Management_system.Helpers
                               dbContext.Users.AddRange(parsedUsers);
                               dbContext.SaveChanges();
                           }
-                      
-                      // Seed Books
-                      //        if (!dbContext.Books.Any())
-                      //        {
-                      //            var booksData = File.ReadAllText("./Resources/books.json");
-                      //            var parsedBooks = JsonConvert.DeserializeObject<Book[]>(booksData);
 
-                      //            dbContext.Books.AddRange(parsedBooks);
-                      //            dbContext.SaveChanges();
-                      //        }
+                          // Seed Books
+                          if (!dbContext.Books.Any())
+                          {
+                              var booksData = File.ReadAllText("./Resources/Books.json");
+                              var parsedBooks = JsonConvert.DeserializeObject<Books[]>(booksData);
 
-                             transaction.Commit();
+                              dbContext.Books.AddRange(parsedBooks);
+                              dbContext.SaveChanges();
+                          }
+
+                          transaction.Commit();
                         }
                       catch (Exception ex)
                       {
